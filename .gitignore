@@ -5,3 +5,5 @@ main/src/main/scala/ua/ucu/edu/handson/*
 .idea
 target
 project/target
+.bloop/
+.metals/

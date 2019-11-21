@@ -25,6 +25,25 @@ lazy val main = (project in file("main"))
       connectInput in run := true
     )
 
+lazy val mapred = (project in file("mapred")).settings(
+  libraryDependencies ++= Seq(
+    "org.apache.hadoop" % "hadoop-core" % "1.2.1"
+  ),
+  assemblyMergeStrategy in assembly := {
+    case PathList("META-INF", xs @ _*) => MergeStrategy.discard
+    case x => MergeStrategy.first
+  }
+)
+
+
+lazy val example = (project in file("example")).settings(
+  libraryDependencies ++= Seq(
+    "org.scalatest" %% "scalatest" % "3.0.5" % "test",
+    "org.scalacheck" %% "scalacheck" % "1.13.+" % "test",
+    "com.storm-enroute" %% "scalameter-core" % "0.10.1"
+  )
+)
+
 lazy val home = (project in file("home"))
     .settings(
       libraryDependencies ++= Seq(
